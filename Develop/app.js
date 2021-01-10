@@ -4,6 +4,7 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+const jest = require("jest");
 
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
@@ -23,127 +24,149 @@ const writeFileAsync = util.promisify(fs.writeFile);
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
 
-Manager() 
-const promptInput = () => 
+const teamMemberArray = [];
+
+
+// Create team profiles
+function addTeamMembers(){
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "usersChoice",
+            message: "What type of employee profile do you want to create?",
+            choices: ["Manager" ,"Engineer", "Intern", "All Done"]
+        }
+    ]).then(choice =>{
+        switch(choice.usersChoice){
+            case "Manager":
+            createManager();
+            break;
+            case "Engineer":
+            addEngineer();
+            break;
+            case "Intern":
+            addIntern();
+            break;
+            default: teamBuilder();
+
+        }
+    })
+};
+addTeamMembers();
+
+
+// Creating Manager profile
+function createManager() { 
     inquirer.prompt([
         {
             type: "input",
             name: "name",
-            message: "What is your name?"
-
+            message: "What is the Manager's name?"
         },
-
         {
             type: "input",
             name: "id",
             message: "What is your id?",
-            default: "ID-0129834765"
-
         },
-
         {
             type: "input",
             name: "email",
             message: "What is your email?"
-
         },
 
         {
             type: "input",
             name: "officeNumber",
             message: "What is your office number?"
-
-        },
-
-        {
-            type: "input",
-            name: "role",
-            message: "What is your role?",
-            default: "Manager"
         }
-    ])
+    ]).then(answers => {
+        var manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+        teamMemberArray.push(manager);
+        console.log(manager);
+        console.log(teamMemberArray);
+        addTeamMembers();
+    })
+} 
+createManager();
 
 
-Engineer()
-    const promptInput = () => 
-    inquirer.prompt([
-        {
-            type: "input",
-            name: "name",
-            message: "What is your name?"
+// // Engineer profile
+// function addEngineer(){
+//     inquirer.prompt([
+//         {
+//             type: "input",
+//             name: "engineerName",
+//             message: "What is the Engineer's name?"
 
-        },
+//         },
 
-        {
-            type: "input",
-            name: "id",
-            message: "What is your id?",
-            default: "ID-0119934725"
+//         {
+//             type: "input",
+//             name: "engineerId",
+//             message: "What is the Engineer's id?",
 
-        },
+//         },
 
-        {
-            type: "input",
-            name: "email",
-            message: "What is your email?"
+//         {
+//             type: "input",
+//             name: "engineerEmail",
+//             message: "What is the Engineer's email?"
 
-        },
+//         },
 
-        {
-            type: "input",
-            name: "github",
-            message: "What is your github username?"
+//         {
+//             type: "input",
+//             name: "engineerGithub",
+//             message: "What is the Engineer's github?"
         
-        },
+//         }
+//     ]).then(answers => {
+//     var engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+//     teamMemberArray.push(engineer);
+//     console.log(engineer);
+//     console.log(teamMemberArray);
+//     addTeamMembers();
+// })
+// }; 
+// addEngineer();
 
-        {
-            type: "input",
-            name: "role",
-            message: "What is your role?",
-            default: "Engineer"
-        }
-    ])
 
-Intern()
-    const promptInput = () => 
-    inquirer.prompt([
-        {
-            type: "input",
-            name: "name",
-            message: "What is your name?"
 
-        },
+// // Intern profile
+// function addIntern() {
+//     inquirer.prompt([
+//     {
+//         type: "input",
+//         name: "internName",
+//         message: "What is the Intern's name?"
+//     },
 
-        {
-            type: "input",
-            name: "id",
-            message: "What is your id?",
-            default: "ID-0110209000"
+//     {
+//         type: "input",
+//         name: "internId",
+//         message: "What is the Intern's id?",
+//     },
 
-        },
+//     {
+//         type: "input",
+//         name: "internEmail",
+//         message: "What is the Intern's email?"
+//     },
 
-        {
-            type: "input",
-            name: "email",
-            message: "What is your email?"
-
-        },
-
-        {
-            type: "input",
-            name: "school",
-            message: "What is your school's name?",
-            default: "UNCC"
-        
-        },
-
-        {
-            type: "input",
-            name: "role",
-            message: "What is your role?",
-            default: "Intern"
-        }
-    ])
+//     {
+//         type: "input",
+//         name: "internSchool",
+//         message: "What is the Intern's school's name?",
+//     }
+//     ]).then(answers => {
+//         var intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+//         teamMemberArray.push(intern);
+//         console.log(intern);
+//         console.log(teamMemberArray);
+//         addTeamMembers();
+//     }); 
+// };
+// addIntern();
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
@@ -151,45 +174,18 @@ Intern()
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
 
-const generateHTML = (answers) =>
-`<!DOCTYPE html>
-<html lang="en">
+// const generateHTML = (answers) =>
+// ``;
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>My Team</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/c502137733.js"></script>
-</head>
+function teamBuilder() {
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR);
+    }
 
-<body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 jumbotron mb-3 team-heading">
-                <h1 class="text-center">My Team</h1>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="team-area col-12 d-flex justify-content-center">
-                {{ team }}
-            </div>
-        </div>
-    </div>
-</body>
-
-</html>`;
+    fs.writeFileSync(outputPath, render(teamMemberArray), "UTF-8");
+}
 
 
-promptInput()
-    .then((answers) => writeFileAsync('main.html', generateHTML(answers)))
-    .then(() => console.log('Successfully wrote to index.html.'))
-    .catch((err) => console.log(err));
 
 // HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
