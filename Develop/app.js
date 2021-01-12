@@ -26,35 +26,6 @@ const writeFileAsync = util.promisify(fs.writeFile);
 
 const teamMemberArray = [];
 
-
-// Create team profiles
-function addTeamMembers(){
-    inquirer.prompt([
-        {
-            type: "list",
-            name: "usersChoice",
-            message: "What type of employee profile do you want to create?",
-            choices: ["Manager" ,"Engineer", "Intern", "All Done"]
-        }
-    ]).then(choice =>{
-        switch(choice.usersChoice){
-            case "Manager":
-            createManager();
-            break;
-            case "Engineer":
-            addEngineer();
-            break;
-            case "Intern":
-            addIntern();
-            break;
-            default: teamBuilder();
-
-        }
-    })
-};
-addTeamMembers();
-
-
 // Creating Manager profile
 function createManager() { 
     inquirer.prompt([
@@ -90,83 +61,108 @@ function createManager() {
 createManager();
 
 
-// // Engineer profile
-// function addEngineer(){
-//     inquirer.prompt([
-//         {
-//             type: "input",
-//             name: "engineerName",
-//             message: "What is the Engineer's name?"
+// Create team profiles
+function addTeamMembers(){
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "usersChoice",
+            message: "What type of employee profile do you want to create?",
+            choices: ["Engineer", "Intern", "All Done"]
+        }
+    ]).then(choice =>{
+        switch(choice.usersChoice){
+            case "Engineer":
+            addEngineer();
+            break;
+            case "Intern":
+            addIntern();
+            break;
+            default: teamBuilder();
 
-//         },
+        }
+    })
+};
 
-//         {
-//             type: "input",
-//             name: "engineerId",
-//             message: "What is the Engineer's id?",
 
-//         },
 
-//         {
-//             type: "input",
-//             name: "engineerEmail",
-//             message: "What is the Engineer's email?"
+// Engineer profile
+function addEngineer(){
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "engineerName",
+            message: "What is the Engineer's name?"
 
-//         },
+        },
 
-//         {
-//             type: "input",
-//             name: "engineerGithub",
-//             message: "What is the Engineer's github?"
+        {
+            type: "input",
+            name: "engineerId",
+            message: "What is the Engineer's id?",
+
+        },
+
+        {
+            type: "input",
+            name: "engineerEmail",
+            message: "What is the Engineer's email?"
+
+        },
+
+        {
+            type: "input",
+            name: "engineerGithub",
+            message: "What is the Engineer's github?"
         
-//         }
-//     ]).then(answers => {
-//     var engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
-//     teamMemberArray.push(engineer);
-//     console.log(engineer);
-//     console.log(teamMemberArray);
-//     addTeamMembers();
-// })
-// }; 
-// addEngineer();
+        }
+    ]).then(answers => {
+    var engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+    teamMemberArray.push(engineer);
+    console.log(engineer);
+    console.log(teamMemberArray);
+    addTeamMembers();
+})
+}; 
+
 
 
 
 // // Intern profile
-// function addIntern() {
-//     inquirer.prompt([
-//     {
-//         type: "input",
-//         name: "internName",
-//         message: "What is the Intern's name?"
-//     },
+function addIntern() {
+    inquirer.prompt([
+    {
+        type: "input",
+        name: "internName",
+        message: "What is the Intern's name?"
+    },
 
-//     {
-//         type: "input",
-//         name: "internId",
-//         message: "What is the Intern's id?",
-//     },
+    {
+        type: "input",
+        name: "internId",
+        message: "What is the Intern's id?",
+    },
 
-//     {
-//         type: "input",
-//         name: "internEmail",
-//         message: "What is the Intern's email?"
-//     },
+    {
+        type: "input",
+        name: "internEmail",
+        message: "What is the Intern's email?"
+    },
 
-//     {
-//         type: "input",
-//         name: "internSchool",
-//         message: "What is the Intern's school's name?",
-//     }
-//     ]).then(answers => {
-//         var intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
-//         teamMemberArray.push(intern);
-//         console.log(intern);
-//         console.log(teamMemberArray);
-//         addTeamMembers();
-//     }); 
-// };
-// addIntern();
+    {
+        type: "input",
+        name: "internSchool",
+        message: "What is the Intern's school's name?",
+    }
+    ]).then(answers => {
+        var intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+        teamMemberArray.push(intern);
+        console.log(intern);
+        console.log(teamMemberArray);
+        addTeamMembers();
+    }); 
+};
+
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
