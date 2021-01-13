@@ -178,10 +178,8 @@ function teamBuilder() {
         fs.mkdirSync(OUTPUT_DIR);
     }
 
-    fs.writeFileAsync(outputPath, render(teamMemberArray), "UTF-8");
+    fs.writeFileSync(outputPath, render(teamMemberArray), "UTF-8");
 };
-
-
 
 
 // HINT: each employee type (manager, engineer, or intern) has slightly different
