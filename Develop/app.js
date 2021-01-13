@@ -178,8 +178,9 @@ function teamBuilder() {
         fs.mkdirSync(OUTPUT_DIR);
     }
 
-    fs.writeFileSync(outputPath, render(teamMemberArray), "UTF-8");
-}
+    fs.writeFileAsync(outputPath, render(teamMemberArray), "UTF-8");
+};
+
 
 
 

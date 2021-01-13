@@ -7,31 +7,32 @@ To create a city search forecast application that searches for build a software 
 
 # Demo Features:
 * The following image and gif shows the web application's appearance and functionality:
-![TeamProfile](liveview.png)
+![TeamProfile](./Assets/liveview.png)
 
-![Forecast Dashboard gif](ForecastDashboard.gif)
+![Team Profile gif](ForecastDashboard.gif)
 
 # Live URL:
-<a href="https://sjohn214.github.io/ForecastDashboard/">Forecast Dashboard URL Live</a>
+<a href="https://sjohn214.github.io/ForecastDashboard/">Team Profile Youtube</a>
 
-<a href="https://github.com/sjohn214/ForecastDashboard.git">Forecast Dashboard GitHub Repo</a>
+<a href="https://github.com/sjohn214/TeamProfile.git">Team Profile GitHub Repo</a>
 
 # Summary
-* In this project a weather forecast dashboard was created utilizing HTML, CSS, Javascript, and Jquery. Javascript and Jquery are used heavily to create the responsive outputs from weather app.
+* In this project we created an employment profile for all members of a department, "Manager, Engineer, and Intern. 
 
 # Special Features:
 * HTML page
-  * Index.html
-    * Landing with card text box.
+  * 5 Index.html
+    * Created an html page for each employee and the main.html.
 * CSS elements 
-  * Bootstrap css stlying on Index.html.
+  * Bootstrap and in-line css stlying on main.html.
 * Javascript page
-  * Variables
+  * Node CLI
   * Arrays with objects
-  * Jquery language 
-  * For loops
+  * Jquery language: inquirer, fileSync, path, and fs 
+  * Test with Jest
   * Functions
-  * Local storage
+  * Installed npm package
+  * Istalled package-json
 
 
 # Authors
