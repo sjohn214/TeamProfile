@@ -9,10 +9,10 @@ To create a city search forecast application that searches for build a software 
 * The following image and gif shows the web application's appearance and functionality:
 ![TeamProfile](./Assets/liveview.png)
 
-![Team Profile gif](ForecastDashboard.gif)
+![Team Profile gif](Assets/teamprofilegi.gif)
 
 # Live URL:
-<a href="https://sjohn214.github.io/ForecastDashboard/">Team Profile Youtube</a>
+<a href="https://youtu.be/3WCP28esXRA">Team Profile Youtube</a>
 
 <a href="https://github.com/sjohn214/TeamProfile.git">Team Profile GitHub Repo</a>
 
